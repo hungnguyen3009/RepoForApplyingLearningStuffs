@@ -27,13 +27,14 @@
 
         <!-- Table for displaying filtered data -->
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" *ngIf='products && products.length'>
                 <thead>
                     <!-- tr: table column -->
                     <tr>
                         <!-- th: table header -->
                         <th>
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary"
+                                    ()>
                                 Show Image
                             </button>
                         </th>
@@ -47,7 +48,21 @@
 
                 <!-- Table body -->
                 <tbody>
-                    
+                    <tr *ngFor='let product of products'>
+                        <!-- Table data element -->
+                        <td>
+                            <!-- [title]: hover mous to image, browser will display this title -->
+                            <img [src]='product.imageUrl'
+                                 [title]='product.productName'
+                                 [style.width.px]='imageWidth'
+                                 [style.margin.px]='imageMargin' />
+                        </td>
+                        <td>{{ product.productName }}</td>
+                        <td>{{ product.productCode }}</td>
+                        <td>{{ product.releaseDate }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.starRating }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
